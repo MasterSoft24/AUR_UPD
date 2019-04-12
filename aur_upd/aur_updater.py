@@ -1,5 +1,6 @@
 import os
 import subprocess
+import urllib.parse
 
 import requests
 import json
@@ -28,7 +29,7 @@ class aur_updater():
 
     def get_package_current_version(self, name):
 
-        r = json.loads(requests.get('https://aur.archlinux.org/rpc/?v=5&type=info&arg[]='+name).text)
+        r = json.loads(requests.get('https://aur.archlinux.org/rpc/?v=5&type=info&arg[]='+urllib.parse.quote(name)).text)
 
         # print(r)
         if r['resultcount'] != 0:

@@ -29,15 +29,15 @@ if __name__ == '__main__':
             if (aur.clone_package(name)) == 0:
                 if aur.build_package(name) == 0:
                     aur.install_package(name, sudoPassword)
-                    print(name + ' is UPDATED')
+                    print('[+] '+name + ' is updated')
                 else:
                     print('======== BUILD ERROR ========')
                     continue
         else:
             if v is None:
-                print(name+' missed in AUR')
+                print('[-] '+name+' missed in AUR')
             else:
-                print(name + ' is CURRENT')
+                print('[ ] '+name + ' is current')
 
 
 
