@@ -14,7 +14,9 @@ class aur_updater():
     def get_aur_packages(self):
 
         list = str(subprocess.run(['pacman', '-Qm'], stdout=subprocess.PIPE).stdout, 'utf-8').split('\n')
-        return list
+        list_native = str(subprocess.run(['pacman', '-Qn'], stdout=subprocess.PIPE).stdout, 'utf-8').split('\n')
+        [value for value in list if value not in list_native]
+        return [value for value in list if value not in list_native]
 
     def clone_package(self, name):
 
