@@ -52,3 +52,22 @@ class aur_updater():
         os.system('rm -rf ../'+name)
 
 
+    def get_updates_list(self):
+
+        out = []
+        aur = aur_updater.aur_updater()
+
+        list = aur.get_aur_packages()
+
+        for l in list:
+            if l == '':
+                continue
+            name = l.split(' ')[0]
+            ver = l.split(' ')[1]
+
+            v = aur.get_package_current_version(name)
+
+            if v != ver and not (v is None):
+                out.append(name)
+
+        return out
