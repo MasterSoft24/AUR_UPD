@@ -15,18 +15,24 @@ class aur_updater():
 
         list = str(subprocess.run(['pacman', '-Qm'], stdout=subprocess.PIPE).stdout, 'utf-8').split('\n')
         list_native = str(subprocess.run(['pacman', '-Qn'], stdout=subprocess.PIPE).stdout, 'utf-8').split('\n')
-        [value for value in list if value not in list_native]
+        # [value for value in list if value not in list_native]
         return [value for value in list if value not in list_native]
 
     def clone_package(self, name):
 
-        r =subprocess.run(['git', 'clone', 'https://aur@aur.archlinux.org/'+name+'.git'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        r = subprocess.run(['git', 'clone', 'https://aur@aur.archlinux.org/'+name+'.git'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         return r.returncode
 
     def build_package(self, name):
+
+        pd = os.getcwd()
         os.chdir(name)
         r = subprocess.run('makepkg', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        os.chdir('..')
+
+        if r.returncode != 0:
+            os.system('rm -rf ../' + name)
+
+        os.chdir(pd)
         return r.returncode
 
     def get_package_current_version(self, name):
@@ -41,6 +47,7 @@ class aur_updater():
 
     def install_package(self, name, passw):
 
+        pd = os.getcwd()
         os.chdir(name)
         r = subprocess.Popen(['ls'], stdout=subprocess.PIPE)
         pkg = str(subprocess.run(['grep','pkg.tar.xz'], stdin=r.stdout, stdout=subprocess.PIPE).stdout, 'utf-8').strip()
@@ -50,6 +57,7 @@ class aur_updater():
         p = subprocess.call('echo {} | sudo -S {}'.format(passw, command), shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
 
         os.system('rm -rf ../'+name)
+        os.chdir(pd)
 
 
     def get_updates_list(self):
