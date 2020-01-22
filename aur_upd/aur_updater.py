@@ -8,8 +8,8 @@ import json
 class aur_updater():
 
 
-    def __init__(self):
-        pass
+    def __init__(self, show_build_log):
+        self.show_build_log = show_build_log
 
     def get_aur_packages(self):
 
@@ -20,7 +20,8 @@ class aur_updater():
 
     def clone_package(self, name):
 
-        r = subprocess.run(['git', 'clone', 'https://aur@aur.archlinux.org/'+name+'.git'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        r = subprocess.run(['git', 'clone', 'https://aur@aur.archlinux.org/{}.git'.format(name)], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        err = str(r.stderr, "utf-8")
         return r.returncode
 
     def build_package(self, name):
@@ -29,7 +30,15 @@ class aur_updater():
         os.chdir(name)
         r = subprocess.run('makepkg', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+
         if r.returncode != 0:
+            s_out = str(r.stdout, 'utf-8')
+            s_error = str(r.stderr, 'utf-8')
+
+            if self.show_build_log == True:
+                print('{}'.format(s_out))
+                print('ERROR: {}'.format(s_error))
+
             os.system('rm -rf ../' + name)
 
         os.chdir(pd)
