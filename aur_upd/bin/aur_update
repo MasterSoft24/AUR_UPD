@@ -23,7 +23,11 @@ def install(name):
             print('{} {}'.format(cnt, pac['Name']))
             cnt += 1
 
-        pacNum = int(input("Enter package number: "))
+        try:
+            pacNum = int(input("Enter package number: "))
+        except:
+            print("Bad index")
+            return
 
         if pacNum < 1 or pacNum > r['resultcount']:
             print("Bad index")
