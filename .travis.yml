@@ -9,7 +9,7 @@ deploy:
     branch: RELEASE
   skip_cleanup: true
   distributions: "sdist"
-  skip_existing: true
+
   twine_version: 1.12.1
 
 script:

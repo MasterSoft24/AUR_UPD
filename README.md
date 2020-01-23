@@ -6,7 +6,7 @@ Author: **Vladimir Kamensky**
 
 Release date: **2020-01-23**
 
-### v 1.1.0
+### v 1.1.0 
 
 ***
 ## INSTALL
