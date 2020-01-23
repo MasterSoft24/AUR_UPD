@@ -8,5 +8,8 @@ deploy:
   on:
     branch: RELEASE
   skip_cleanup: true
+  distributions: sdist
+  skip_existing: true
 
 script: echo "Success!"
+
