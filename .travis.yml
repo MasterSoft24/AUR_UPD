@@ -7,6 +7,8 @@ deploy:
     secure: yfsReskHK/ynWdTB4086ESO70WLTVWpmD65/hBJZGw9frRgoCjbSyVxw4iyJ3NGXePG74P5iXRfdiCdTPLqMCHYY+1KkOn05Wg09t0mcQFG8Rd899+xyfygb0IdggNIXxvd3nk2u/HM+5dL0ye5EHG8lwgQMhIe8Q4uwthqMaH+ISCvh5a/VadeSDKBk646Xw4xkLu8Jbea3x/MwENpIw1MtRVDNCP51uTe7i0lak0Ee/gz/PgVxAkb4OQbMOEJJvWJsrJ2JjvpEyS1nm9HgbwKpKyVGcYB7NQGJcxouXj8vUoHzyn3Fd4XpjQj1gckqXeBTXkUFZiQBr/wGiyAw3D5tVTDPxd4s2TXCRGEVliMZF1IGJsxgy0k5qPS3/wz0YIEiBP7H0OZ/gm0/x78rkzkwgkHr7QewYwnny521kT8DiW/c/Rso6ZjBEwuks9iKzbupKErnyBugLQ0B0Uo4XaIeeMHfNeirPYLFMkS+cTqBwfsfoPC6be4SoFNOJVyMFMhrIeNMOnGXiBB4USrZRpAs98NaiDd3kF4e1pc9pwEU6XFMO2A7LwYEPFsrNosk/1h+yOy2th3os8QmeIuz7Kv1aP9qtKqBFxaaTYUybo+eifNNwLf6vFnoBS969BjQA8Yk1p7DXEibtGTDockPPz77MmoudHjQ1Ks9/TidSLU=
   on:
     branch: RELEASE
+    tags: true
+
   skip_cleanup: true
   distributions: "sdist"
 
