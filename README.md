@@ -1,13 +1,15 @@
-#AUR_UPD
+# AUR_UPD
+
 *Yet another AUR helper with a silent install/update capability*
 
 Author: **Vladimir Kamensky**
 
 Release date: **2020-01-23**
-###v 1.1.0
+
+### v 1.1.0
 
 ***
-##INSTALL
+## INSTALL
 From pip:
 
 	pip3 install aur_upd
@@ -16,12 +18,12 @@ Manually:
 
 	python setup.py install
 	
-##USAGE
+## USAGE
 
 Update all AUR packages
 
 	aur_update
-	
+
 Install package from AUR
 
 	aur_update install *package_name*
