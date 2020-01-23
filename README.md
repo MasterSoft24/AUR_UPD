@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MasterSoft24/AUR_UPD.png?branch=RELEASE)](https://travis-ci.org/MasterSoft24/AUR_UPD)
+
 # AUR_UPD
 
 *Yet another AUR helper with a silent install/update capability*
