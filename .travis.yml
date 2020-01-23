@@ -12,5 +12,6 @@ deploy:
   skip_existing: true
   twine_version: 1.12.1
 
-script: echo "Success!"
-
+script:
+  echo "Success!"
+  - python setup.py sdist
