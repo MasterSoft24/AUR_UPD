@@ -11,7 +11,8 @@ setup(
     author_email='info@mastersoft24.ru ',
     packages=find_packages(),
     scripts=['aur_upd/bin/aur_update'],
-    long_description=open(join(dirname(__file__), 'README.txt')).read(),
+    long_description=open(join(dirname(__file__), 'README.md')).read(),
+    long_description_content_type="text/markdown"
     # entry_points={
     #     'console_scripts': ['aur_upd=funniest.command_line:main'],
     # },
