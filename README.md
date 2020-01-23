@@ -14,7 +14,7 @@ Release date: **2020-01-23**
 ## INSTALL
 From pip:
 
-	pip3 install aur_upd
+	pip3 install aur-upd
 	
 Manually:
 
