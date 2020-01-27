@@ -15,5 +15,5 @@ deploy:
   twine_version: 1.12.1
 
 script:
-  echo "Success!"
+  - python -m unittest tests/test_aur_updater.py
   - python setup.py sdist
