@@ -52,6 +52,8 @@ def inst_package(name):
         print(f'{name} missed in AUR')
         return
 
+
+
 def install(name):
 
     r = json.loads(requests.get('https://aur.archlinux.org/rpc/?v=5&type=search&arg=' + urllib.parse.quote(name)).text)
@@ -72,16 +74,20 @@ def install(name):
             print("Bad index")
             return
 
-        print(r['results'][pacNum-1]['Name'])
+        # print(r['results'][pacNum-1]['Name'])
 
         inst_package(r['results'][pacNum-1]['Name'])
-        exit(0)
+
 
     else:
         if r['resultcount'] == 0:
             print('Nothing found')
+
         else:
-            print(r['results'][0]['Name'])
+            # print(r['results'][0]['Name'])
+            inst_package(r['results'][0]['Name'])
+
+    exit(0)
 
 if __name__ == '__main__':
 

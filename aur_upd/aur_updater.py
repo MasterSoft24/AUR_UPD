@@ -30,7 +30,6 @@ class aur_updater():
         os.chdir(name)
         r = subprocess.run('makepkg', stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-
         if r.returncode != 0:
             s_out = str(r.stdout, 'utf-8')
             s_error = str(r.stderr, 'utf-8')
@@ -44,14 +43,19 @@ class aur_updater():
         os.chdir(pd)
         return r.returncode
 
+    def exec_req_to_aur_api_info(self, package_name):
+        return json.loads(requests.get('https://aur.archlinux.org/rpc/?v=5&type=info&arg[]='+urllib.parse.quote(package_name)).text)
+
     def get_package_current_version(self, name):
 
-        r = json.loads(requests.get('https://aur.archlinux.org/rpc/?v=5&type=info&arg[]='+urllib.parse.quote(name)).text)
+        r = self.exec_req_to_aur_api_info(name)
 
-        # print(r)
-        if r['resultcount'] != 0:
-            return r['results'][0]['Version']
-        else:
+        try:
+            if r['resultcount'] != 0:
+                return r['results'][0]['Version']
+            else:
+                return None
+        except:
             return None
 
     def install_package(self, name, passw):
@@ -72,9 +76,9 @@ class aur_updater():
     def get_updates_list(self):
 
         out = []
-        aur = aur_updater.aur_updater()
+        # aur = aur_updater.aur_updater()
 
-        list = aur.get_aur_packages()
+        list = self.get_aur_packages()
 
         for l in list:
             if l == '':
@@ -82,7 +86,7 @@ class aur_updater():
             name = l.split(' ')[0]
             ver = l.split(' ')[1]
 
-            v = aur.get_package_current_version(name)
+            v = self.get_package_current_version(name)
 
             if v != ver and not (v is None):
                 out.append(name)
